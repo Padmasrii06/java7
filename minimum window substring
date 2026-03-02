@@ -1,0 +1,16 @@
+var minWindow = function (s, t) {
+    let need = new Array(128).fill(0);
+    for (let c of t) need[c.charCodeAt(0)]++;
+    let count = t.length, l = 0, start = 0, minLen = Infinity;
+    for (let r = 0; r < s.length; r++) {
+        if (need[s.charCodeAt(r)] > 0) count--;
+        need[s.charCodeAt(r)]--;
+        while (count === 0) {
+            if (r - l + 1 < minLen) { minLen = r - l + 1; start = l; }
+            need[s.charCodeAt(l)]++;
+            if (need[s.charCodeAt(l)] > 0) count++;
+            l++;
+        }
+    }
+    return minLen === Infinity ? "" : s.substring(start, start + minLen);
+};
