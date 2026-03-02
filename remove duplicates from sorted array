@@ -1,0 +1,26 @@
+var deleteDuplicates = function(head) {
+    const dummy = new ListNode()
+    let res = dummy
+    let copy = head
+    const map = new Map()
+
+    while (head) {
+        if (map.has(head.val)) {
+            map.set(head.val, false)
+        } else {
+            map.set(head.val, true)
+        }
+        head = head.next
+    }
+
+    while (copy) {
+        if (map.get(copy.val)) {
+            res.next = new ListNode(copy.val)
+            res = res.next
+        }
+
+        copy = copy.next
+    }
+
+    return dummy.next
+}
