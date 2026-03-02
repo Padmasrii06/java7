@@ -1,0 +1,30 @@
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var setZeroes = function(matrix) {
+    var set = new Set();
+    for(let i=0;i<matrix.length;i++){
+        for(let j=0;j<matrix[0].length;j++){
+            // Check if cell is 0 and ensure it's not a zero we created (tracked in Set)
+            if(matrix[i][j] === 0 && !set.has(`${i},${j}`)){
+                
+                // Set entire row i to 0
+                for(let k=0;k<matrix[0].length;k++){
+                    if(matrix[i][k]!==0){
+                        matrix[i][k] = 0;
+                        set.add(`${i},${k}`); // Track this as a modified cell
+                    }
+                }
+                
+                // Set entire column j to 0
+                for(let k=0;k<matrix.length;k++){
+                    if(matrix[k][j]!==0){
+                        matrix[k][j] = 0;
+                        set.add(`${k},${j}`); // Track this as a modified cell
+                    }
+                }
+            }
+        }
+    }
+};
