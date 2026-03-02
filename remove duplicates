@@ -1,0 +1,22 @@
+var removeDuplicates = function(nums) {
+    // vertor ordenado em ordem crescente (menor pro maior)
+    // remover duplicados
+    // numero de elementos unicos = k
+    // primeiro k elemento contem os numeros unicos em ordem crescente, restante pode ser ignorados
+    k = 0 // a posição 0 não receberá nada já que ela já é unica, começa a partir do 1
+    w = nums[0]
+    let i = 0;
+    let cont = 0;
+    for(i = 0; i < nums.length; i ++){
+        if(i>0 && (nums[i-1] == nums[i])) cont++;
+
+        if(w !== nums[i]) {
+            w = nums[i];
+            cont = 0;  
+        }
+        nums[k] = w;
+        if(cont<2) k++;
+    }
+
+    return k;
+};
