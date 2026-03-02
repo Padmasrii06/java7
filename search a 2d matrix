@@ -1,0 +1,21 @@
+var searchMatrix = function(matrix, target) {
+
+let n = matrix.length
+let m = matrix[0].length
+
+let x = 0
+let y = m-1
+
+while(x<=n-1 && y>=0){
+
+  if(matrix[x][y]==target){
+    return true
+  }else if(matrix[x][y]<target){
+    x++
+  }else if(matrix[x][y]>target){
+    y--
+  }
+
+}
+return false;
+};
